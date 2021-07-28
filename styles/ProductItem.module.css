@@ -1,0 +1,13 @@
+.image {
+    width: 100px;
+    height: 100px;
+   
+}
+
+.list{
+    border: 2px solid black;
+    margin: 10px;
+    width: 45%;
+   
+}
+

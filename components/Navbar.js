@@ -8,12 +8,7 @@ export default function Navbar({children}){
             <Link href="/">
                 <a>Home</a>
             </Link>
-            <Link href="/products">
-                <a>Shop All</a>
-            </Link>
-            <Link href="/categories">
-                <a>Search by category</a>
-            </Link>
+           
             <Link href="/cart">
                 <a>Cart</a>
             </Link>

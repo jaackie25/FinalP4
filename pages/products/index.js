@@ -10,6 +10,15 @@ export default function Products({products}){
                     <ProductItem key={product.id} product={product}/>
                 ))}
             </ul>
+
+            <style jsx>{`
+           ul{
+               display:grid;
+                grid-template-columns: repeat(auto-fill, minmax(650px, 2fr)); 
+                justify-content:center;
+                align-items:center;
+           }
+        `}</style>
             
         </div>
     )

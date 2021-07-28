@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import axios from 'axios'
 import styles from '../../styles/Item.module.css'
-import {useSession} from 'next-auth/client'
+import {useSession, getSession} from 'next-auth/client'
+
 
 
 
@@ -9,6 +10,7 @@ import {useSession} from 'next-auth/client'
 export default function Details({product}){
     // console.log("PRODUCTS", product)
     const[session, loading] = useSession()
+    console.log("CART SESSION", session)
     
 
     const cart = async ({product}) => {
@@ -35,28 +37,41 @@ export default function Details({product}){
     )
 }
 
-export async function getStaticPaths() {
-    const res = await axios.get("https://fakestoreapi.com/products")
-    const products= res.data
-    const paths = products.map(product => {
-        return {
-            params : {id: product.id.toString()}
-        }
-    })
+// export async function getStaticPaths() {
+//     const res = await axios.get("https://fakestoreapi.com/products")
+//     const products= res.data
+//     const paths = products.map(product => {
+//         return {
+//             params : {id: product.id.toString()}
+//         }
+//     })
+//     return{
+//         paths,
+//         fallback:false
+//     }
+// }
+
+
+// export async function getStaticProps(context) {
+//   const res = await axios.get(`https://fakestoreapi.com/products/${context.params.id}`)
+//   const product = res.data
+//   return{
+//       props: {
+//          product
+//       }
+//   }
+// }
+export async function getServerSideProps(context) {
+    // const {req,res,user} = context
+    // const session = await getSession({req})
+    // console.log("CONTEXT SESSION:", session)
+    const response = await axios.get(`https://fakestoreapi.com/products/${context.params.id}`)
+   
+    const product = response.data
     return{
-        paths,
-        fallback:false
+        props: {
+            product,
+            // session: await getSession(context)
+        }
     }
-}
-
-
-export async function getStaticProps(context) {
-  const res = await axios.get(`https://fakestoreapi.com/products/${context.params.id}`)
-  const product = res.data
-  return{
-      props: {
-          product
-      }
   }
-}
-

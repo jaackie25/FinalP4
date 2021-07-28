@@ -13,4 +13,18 @@ export default NextAuth({
     //   add database later if I have time
     // A database is optional, but required to persist accounts in a database
       database: process.env.DATABASE_URL,
+
+      callbacks: {
+        jwt: async (token, user, account, profile, isNewUser) => {
+          if (user) {
+            token.uid = user.id;
+          }
+          return Promise.resolve(token);
+        },
+        session: async (session, user) => {
+          console.log("USER AUTH", user)
+          session.user.uid = user.uid;
+          return Promise.resolve(session);
+        }
+      }
 })
