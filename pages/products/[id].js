@@ -13,7 +13,7 @@ export default function Details({product}){
     
 
     const cart = async ({product}) => {
-       const data = await fetch(`http://localhost:3000/api/cart?product_id=${product.id}&user_id=${session.accessToken}&product_name=${product.title}&price=${product.price}&image=${product.image}`)
+       const data = await fetch(`http://localhost:3000/api/cart?product_id=${product.id}&product_name=${product.title}&price=${product.price}&image=${product.image}`)
        const res = await data.json() 
     
     }

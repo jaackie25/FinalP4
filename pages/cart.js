@@ -6,7 +6,7 @@ import styles from '../styles/Cart.module.css'
 
 export default function Cart({items}){
     const[session, loading] = useSession()
-  
+    let total = 0 
     console.log("SESSION IN CART", session)
     console.log("ITEM", items)
     if(!session){
@@ -21,7 +21,6 @@ export default function Cart({items}){
         console.log("REMOVE DATA", data)
         const res = await data.json()
         console.log("RES REMOVE", res)
-       
     }
 
     return(
