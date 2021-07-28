@@ -30,7 +30,6 @@ export default function Cart({items}){
             {items.map((item)=> (
                <div>
                    <li>
-                       {item.product_id}
                    Name: {item.product_name}
                    $: {item.price}
                    <img className={styles.img} src={item.image} />
@@ -42,29 +41,6 @@ export default function Cart({items}){
         </div>
     )
 
-    // useEffect(() => {
-    //   const fetchData = async() => {
-    //       const res = await fetch("/api/cart")
-    //       const json = await res.json()
-
-    //       if(json.content){
-    //           setContent(json.content)
-    //       }
-    //   } 
-    //   fetchData()
-    // },[session])
-
-    // if(!session){
-    //     return(
-    //         <h1>Please sign in to access this page</h1>
-    //     )
-    // }
-    // return(
-    //     <div>
-    //         <h1>Protected page</h1>
-    //         <p>{content}</p>
-    //     </div>
-    // )
 }
 
 export async function getServerSideProps(){

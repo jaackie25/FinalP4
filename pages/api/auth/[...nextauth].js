@@ -8,10 +8,9 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-    // ...add more providers here
+    
   ],
-    //   add database later if I have time
-    // A database is optional, but required to persist accounts in a database
+    
       database: process.env.DATABASE_URL,
 
       callbacks: {
@@ -22,7 +21,6 @@ export default NextAuth({
           return Promise.resolve(token);
         },
         session: async (session, user) => {
-          console.log("USER AUTH", user)
           session.user.uid = user.uid;
           return Promise.resolve(session);
         }

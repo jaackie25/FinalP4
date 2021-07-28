@@ -24,9 +24,8 @@ export default function Products({products}){
     )
 }
 export async function getServerSideProps(){
-    const res = await axios.get('https://fakestoreapi.com/products?limit=10')
+    const res = await axios.get('https://fakestoreapi.com/products?limit=20')
     const products = res.data
-  
     return{
       props: {
         products

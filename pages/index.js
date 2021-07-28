@@ -1,6 +1,5 @@
 import styles from '../styles/Home.module.css'
 import Head from 'next/head'
-import Image from 'next/image'
 import React from 'react'
 
 import Link from 'next/link'
@@ -8,7 +7,7 @@ import {signIn, signOut, useSession} from 'next-auth/client'
 
 export default function Home() {
   const[session, loading] = useSession()
-  console.log("INTIAL SIGN IN", session)
+ 
   return (
     <div className={styles.container}>
       <Head>
@@ -21,28 +20,13 @@ export default function Home() {
           Not signed in <br/>
           <button onClick={() => signIn()}>Sign in</button>
           </>}
-            <Link href="/products">
-                <a >Shop our whole collection</a>
-            </Link>
+           
           {session && <>
           Signed in as {session.user.name} <br/>
          
           <button onClick={() => signOut()}>Sign out</button>
           </>}
-     
-  
-
-     
     </div>
   )
 }
 
-// export async function getServerSideProps(context) {
-//   const { client } = await connectToDatabase()
-
-//   const isConnected = await client.isConnected()
-
-//   return {
-//     props: { isConnected },
-//   }
-// }
